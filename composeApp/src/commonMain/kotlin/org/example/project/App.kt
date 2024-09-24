@@ -18,7 +18,9 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Button
 import androidx.compose.material.Card
 import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
+import androidx.compose.material.TopAppBar
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -30,15 +32,33 @@ import org.jetbrains.compose.ui.tooling.preview.Preview
 
 import kotlinproject_mobile_desk.composeapp.generated.resources.Res
 import kotlinproject_mobile_desk.composeapp.generated.resources.compose_multiplatform
+import org.example.project.components.SidebarMenu
 import org.example.project.viewModels.HomeViewModel
 
 @Composable
 @Preview
 fun App() {
     MaterialTheme {
-        AppContent(homeViewModel = HomeViewModel())
+//        AppContent(homeViewModel = HomeViewModel())
+        AppContent2()
 
     }
+}
+
+@Composable
+fun AppContent2() {
+    Scaffold(
+        topBar = { TopAppBar(title = { Text("Sidebar Menu Example") }) },
+        drawerContent = { SidebarMenu() }
+    ) {
+        // Main content goes here
+    }
+}
+
+@Preview()
+@Composable
+fun PreviewSidebarMenu() {
+    AppContent2()
 }
 
 @Composable
