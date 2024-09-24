@@ -22,6 +22,7 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.seiko.imageloader.rememberImagePainter
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
@@ -61,14 +62,17 @@ fun AppContent(homeViewModel: HomeViewModel){
             LazyVerticalGrid(columns = GridCells.Fixed(cols),
                 state = scollState, contentPadding = PaddingValues(16.dp)
             ){
-               items(items=products.value,key={product->product.id.toString()}){
+               items(items=products.value,key={product->product.id.toString()}){product->
                    Card(shape = RoundedCornerShape(15.dp),
                        modifier = Modifier.padding(8.dp).fillMaxWidth(),
                        elevation = 2.dp) {
                        Column(
                            verticalArrangement = Arrangement.Center,
                            horizontalAlignment = Alignment.CenterHorizontally,
-                       ){}
+                       ){
+                           val painter = rememberImagePainter(url = product.image)
+
+                       }
 
                    }
 
