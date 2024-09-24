@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.lazy.grid.GridCells
@@ -21,6 +22,7 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import com.seiko.imageloader.rememberImagePainter
 import org.jetbrains.compose.resources.painterResource
@@ -34,6 +36,7 @@ import org.example.project.viewModels.HomeViewModel
 @Preview
 fun App() {
     MaterialTheme {
+        AppContent(homeViewModel = HomeViewModel())
 
     }
 }
@@ -71,6 +74,16 @@ fun AppContent(homeViewModel: HomeViewModel){
                            horizontalAlignment = Alignment.CenterHorizontally,
                        ){
                            val painter = rememberImagePainter(url = product.image)
+                           Image(
+                               painter,
+                               modifier = Modifier.height(130.dp),
+                               contentDescription = product.title
+                           )
+                           Text(
+                               product.title.toString(),
+                               maxLines = 2,
+                               overflow = TextOverflow.Ellipsis
+                           )
 
                        }
 
