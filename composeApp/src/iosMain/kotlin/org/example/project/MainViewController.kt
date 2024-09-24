@@ -6,6 +6,10 @@ import com.seiko.imageloader.component.setupDefaultComponents
 import com.seiko.imageloader.intercept.bitmapMemoryCacheConfig
 import com.seiko.imageloader.intercept.imageMemoryCacheConfig
 import com.seiko.imageloader.intercept.painterMemoryCacheConfig
+import okio.Path.Companion.toPath
+import platform.Foundation.NSCachesDirectory
+import platform.Foundation.NSSearchPathForDirectoriesInDomains
+import platform.Foundation.NSUserDomainMask
 
 fun MainViewController() = ComposeUIViewController { App() }
 
@@ -33,4 +37,12 @@ fun generateImageLoader(): ImageLoader {
             }
         }
     }
+}
+
+private fun getCacheDir(): String {
+    return NSSearchPathForDirectoriesInDomains(
+        NSCachesDirectory,
+        NSUserDomainMask,
+        true,
+    ).first() as String
 }
