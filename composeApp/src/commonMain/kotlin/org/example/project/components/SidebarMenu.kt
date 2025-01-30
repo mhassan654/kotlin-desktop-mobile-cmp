@@ -26,6 +26,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
+@Preview
 @Composable
 fun SidebarMenu() {
     var expanded by remember { mutableStateOf(false) }
@@ -33,7 +34,7 @@ fun SidebarMenu() {
     Column(
         modifier = Modifier.fillMaxSize().padding(16.dp),
         verticalArrangement = Arrangement.Top,
-        horizontalAlignment = Alignment.Start
+        horizontalAlignment = Alignment.Start,
     ) {
         Text(text = "Menu", fontSize = 24.sp, fontWeight = FontWeight.Bold)
 
@@ -44,15 +45,16 @@ fun SidebarMenu() {
 
         // Dropdown Menu Example
         Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .clickable(onClick = { expanded = !expanded }),
-            verticalAlignment = Alignment.CenterVertically
+            modifier =
+                Modifier
+                    .fillMaxWidth()
+                    .clickable(onClick = { expanded = !expanded }),
+            verticalAlignment = Alignment.CenterVertically,
         ) {
             Text(text = "Settings")
             Icon(
-                imageVector = if (expanded) Icons.Filled.ArrowDropDown else Icons.Filled.KeyboardArrowUp,
-                contentDescription = null
+                imageVector = if (expanded) Icons.Filled.ArrowDropDown else Icons.Default.KeyboardArrowUp,
+                contentDescription = null,
             )
         }
 
@@ -71,12 +73,13 @@ fun SidebarMenu() {
 fun MenuItem(text: String) {
     Text(
         text = text,
-        modifier = Modifier.padding(vertical = 8.dp)
+        modifier = Modifier.padding(vertical = 8.dp),
     )
 }
 
-@Preview
+@Suppress("ktlint:standard:function-naming")
 @Composable
-fun PreviewSidebar(){
+@Preview()
+fun PreviewSidebar() {
     SidebarMenu()
 }
